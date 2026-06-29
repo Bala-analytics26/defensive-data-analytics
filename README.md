@@ -22,3 +22,14 @@ A query that executes without errors can still be dangerously wrong. Silent bugs
 *   **The Vulnerability:** Using equality operators on nullable fields drops transactional rows silently.
 *   **The Excel Correlation:** Text-to-Serial date type mismatches trigger standard `#N/A` errors on visible matches.
 *   **The Remediation:** Explicit `IS NULL` isolation and `DATEVALUE()` data type casting.
+
+* * *
+
+### 🪤 Trap 002: The Poisoned Total & The Broken Chain
+
+*   **The Vulnerability:** Any mathematical operations performed against `NULL` columns resolve entirely to `NULL`, silently suppressing revenue metrics.
+*   **The Excel Correlation:** Standard `=SUM` arrays break completely and return `#VALUE!` errors when hitting a single rogue text string or formula error.
+*   **The Remediation:** Strategic mid-flight `ISNULL(Column, 0)` data transformation and robust `=AGGREGATE(9, 6, Range)` mathematical filtering.
+
+* * *
+
