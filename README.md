@@ -23,14 +23,20 @@ A query or formula that executes without throwing error messages can still be da
 *   **Excel Correlation:** Data type mismatches (Text strings vs. true numeric Date Serial Numbers) trigger false `#N/A` breaks on visible lookups.
 *   **Structural Patch:** Explicitly isolate missing attributes with `IS NULL` filters and cast text structures with `=DATEVALUE()`.
 
+***
+
 ### 🪤 Trap 2: The Poisoned Total & The Broken Chain
 
 *   **SQL Vulnerability:** Running standard math operations against columns containing `NULL` spaces converts the entire result to `NULL`, skewing transactional volumes.
 *   **Excel Correlation:** Standard `=SUM` arrays collapse completely and return an overarching `#VALUE!` error if a single cell in the range contains a text typo.
 *   **Structural Patch:** Leverage mid-flight `ISNULL(Column, 0)` replacements and implement robust `=AGGREGATE(9, 6, Range)` error skips.
 
+***
+
 ### 🪤 Trap 3: The Join Filter Trap & Invisible Rows
 
 *   **SQL Vulnerability:** Placing filtration criteria for the right-hand table inside a `WHERE` clause silently strips out rows, forcing a `LEFT JOIN` to execute as an `INNER JOIN`.
 *   **Excel Correlation:** Standard filters mask rows visually, but backend calculation tools like `=AGGREGATE(code 6)` continue counting hidden data, inflating dashboard results.
+
+***
 *   **Structural Patch:** Shift right-hand constraints entirely into the initial `ON` match clause, and switch Excel engines to `=AGGREGATE(9, 7, Range)` to ignore hidden rows.
