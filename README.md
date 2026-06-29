@@ -40,3 +40,12 @@ A query or formula that executes without throwing error messages can still be da
 *   **Structural Patch:** Shift right-hand constraints entirely into the initial `ON` match clause, and switch Excel engines to `=AGGREGATE(9, 7, Range)` to ignore hidden rows.
 
 ***
+
+### 🪤 Trap 4: The Imposter Top Performers & Broken Selection
+
+*   **SQL Vulnerability:** Sorting by a raw column attribute instead of its aggregated counterpart ranks records by single transaction values instead of cumulative totals.
+*   **Excel Correlation:** Sorting a single column near blank row or column boundaries breaks the selection array, scrambling data values away from their correct rows.
+*   **Structural Patch:** Pass explicit `SUM()` parameters into the `ORDER BY` clause, and instantiate structural tables via `Ctrl + T` to permanently bind Excel data columns.
+
+* * *
+
