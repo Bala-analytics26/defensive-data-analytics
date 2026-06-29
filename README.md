@@ -32,4 +32,3 @@ A query that executes without errors can still be dangerously wrong. Silent bugs
 *   **The Remediation:** Strategic mid-flight `ISNULL(Column, 0)` data transformation and robust `=AGGREGATE(9, 6, Range)` mathematical filtering.
 
 * * *
-
