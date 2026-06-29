@@ -8,7 +8,6 @@ SELECT * FROM Orders O WHERE O.OrderDate = COALESCE(O.OrderDate, '2026-05-10');
 -- ✅ THE REMEDIATION (The Defensive Fix)
 SELECT * FROM Orders O WHERE O.OrderDate = '2026-05-10' OR O.OrderDate IS NULL;
 
-***
 
 -- EXCEL - The Visual Mask Vulnerability (Excel)
 -- Symptom: VLOOKUP formulas return false #N/A errors on matching dates due to underlying data type conflicts.
