@@ -37,6 +37,6 @@ A query or formula that executes without throwing error messages can still be da
 
 *   **SQL Vulnerability:** Placing filtration criteria for the right-hand table inside a `WHERE` clause silently strips out rows, forcing a `LEFT JOIN` to execute as an `INNER JOIN`.
 *   **Excel Correlation:** Standard filters mask rows visually, but backend calculation tools like `=AGGREGATE(code 6)` continue counting hidden data, inflating dashboard results.
+*   **Structural Patch:** Shift right-hand constraints entirely into the initial `ON` match clause, and switch Excel engines to `=AGGREGATE(9, 7, Range)` to ignore hidden rows.
 
 ***
-*   **Structural Patch:** Shift right-hand constraints entirely into the initial `ON` match clause, and switch Excel engines to `=AGGREGATE(9, 7, Range)` to ignore hidden rows.
