@@ -14,7 +14,7 @@ FROM Sales.Orders
 WHERE SUM(InvoiceAmount) > 5000.00  
 GROUP BY CustomerID; 
 
-\-- THE REMEDIATION A (The Direct Fix: Use HAVING to filter after the grouping operation completes)  
+\-- ✅ THE REMEDIATION A (The Direct Fix: Use HAVING to filter after the grouping operation completes)  
 SELECT  
 CustomerID,  
 SUM(InvoiceAmount) AS TotalSpend  
@@ -22,7 +22,7 @@ FROM Sales.Orders
 GROUP BY CustomerID  
 HAVING SUM(InvoiceAmount) > 5000.00; 
 
-\-- THE REMEDIATION B (The Enterprise Fix: Use a CTE to isolate metrics and reuse column aliases cleanly)  
+\-- ✅ THE REMEDIATION B (The Enterprise Fix: Use a CTE to isolate metrics and reuse column aliases cleanly)  
 WITH CustomerRollup AS (  
 SELECT  
 CustomerID,  
@@ -45,7 +45,7 @@ PART 2: EXCEL TRAP (The Formula Matrix Crash) 
 \-- ❌ THE VULNERABILITY (SUMIFS cannot evaluate or compute mid-flight group summaries inside its own row-by-row criteria loops)  
 \=SUMIFS(InvoiceAmount, CustomerID, "A123", SUM(InvoiceAmount), ">5000") 
 
-\-- THE REMEDIATION (Creates a structured Table column layer to establish static background metrics before filtering)  
+\-- ✅ THE REMEDIATION (Creates a structured Table column layer to establish static background metrics before filtering)  
 \-- Step 1: Add a dedicated helper column inside your Excel Table to pre-calculate totals per customer:  
 \=SUMIF(\[CustomerID\], \[@CustomerID\], \[InvoiceAmount\]) 
 
