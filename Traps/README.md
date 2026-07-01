@@ -49,3 +49,11 @@ A query or formula that executes without throwing error messages can still be da
 
 * * *
 
+### 🪤 Trap 5: The Aggregation Horizon Collapse
+
+*   **SQL Vulnerability**: Attempting to pass group functions like `SUM()`, `COUNT()`, or `AVG()` directly inside a standard `WHERE` clause crashes the engine, because individual raw rows are filtered sequentially before any grouping structures are built. 
+*   **Excel Correlation**: Applying basic filtering or sorting logic directly on rows that contain fragmented conditional formulas without enclosing boundaries causes cross-row calculation bleed, returning skewed metric distributions across your summary tables. 
+*   **Structural Patch**: Pivot single-layer group queries to use a `HAVING` clause entirely, or deploy a robust Stacking CTE Layer to fully calculate and isolate metrics before referencing them inside outer execution criteria.
+
+***
+
